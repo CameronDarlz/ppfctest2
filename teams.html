@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teams • Penmaenmawr Phoenix FC</title>
+  <meta name="description" content="Meet the squads and coaching staff of Penmaenmawr Phoenix FC — First Team, Ladies, Development, and Juniors." />
+  <style>
+    :root{
+      --blue:#0B3C88;
+      --yellow:#F2B705;
+      --red:#E10600;
+      --ink:#0b1220;
+      --bg:#070A10;
+      --card:#0f1628;
+      --muted:#9fb0d1;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 20px 55px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:#fff;
+      background:
+        radial-gradient(1100px 600px at 20% -10%, rgba(11,60,136,.55), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(242,183,5,.30), transparent 55%),
+        radial-gradient(900px 650px at 50% 120%, rgba(225,6,0,.18), transparent 55%),
+        linear-gradient(180deg, #050812 0%, #060913 35%, #050812 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none;}
+    .wrap{width:min(var(--max), calc(100% - 40px)); margin:0 auto;}
+
+    /* ── Header ───────────────────────────────────── */
+    header{
+      position:sticky; top:0; z-index:200;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(5,8,18,.92), rgba(5,8,18,.65));
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:16px;}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+    .badge-img{
+      width:40px; height:40px; border-radius:12px;
+      background:linear-gradient(145deg, rgba(242,183,5,.18), rgba(11,60,136,.10));
+      border:1px solid rgba(242,183,5,.28);
+      display:grid; place-items:center; overflow:hidden;
+    }
+    .badge-img img{width:100%; height:100%; object-fit:contain}
+    .brand h1{margin:0; font-size:14px; letter-spacing:.6px; text-transform:uppercase; line-height:1.1; font-weight:800;}
+    .brand span{display:block; color:var(--yellow); font-weight:800; font-size:12px}
+    nav ul{display:flex; gap:18px; list-style:none; padding:0; margin:0; align-items:center;}
+    nav a{
+      text-decoration:none; font-weight:700; letter-spacing:.4px; font-size:14px;
+      padding:10px 10px; border-radius:12px; color:rgba(255,255,255,.88);
+    }
+    nav a:hover{background:rgba(255,255,255,.06)}
+    nav a.active{background:rgba(242,183,5,.14); border:1px solid rgba(242,183,5,.25)}
+
+    /* ── Dropdown ─────────────────────────────────── */
+    .nav-has-dropdown{position:relative;}
+    .nav-has-dropdown > a{display:inline-flex; align-items:center; gap:5px;}
+    .nav-has-dropdown > a .chevron{
+      font-size:10px; opacity:.6; transition:transform .2s;
+      display:inline-block; margin-top:1px;
+    }
+    .nav-has-dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-panel{
+      position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%);
+      min-width:220px;
+      background:rgba(6,9,19,.97);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:8px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 24px 60px rgba(0,0,0,.6);
+      display:none;
+      z-index:300;
+    }
+    .nav-has-dropdown:hover .dropdown-panel{display:block;}
+    .dropdown-panel a{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:10px;
+      color:rgba(255,255,255,.88); font-weight:700;
+      font-size:13px; letter-spacing:.3px;
+    }
+    .dropdown-panel a:hover{background:rgba(255,255,255,.07); color:var(--yellow);}
+    .dropdown-panel .dp-dot{
+      width:7px; height:7px; border-radius:50%; flex-shrink:0;
+    }
+    .dp-dot.blue{background:var(--blue);}
+    .dp-dot.red{background:var(--red);}
+    .dp-dot.yellow{background:var(--yellow);}
+    .dp-dot.green{background:#34d08a;}
+    .dropdown-divider{height:1px; background:var(--line); margin:6px 8px;}
+
+    /* ── Social / Hamburger ──────────────────────── */
+    .social{display:flex; gap:10px; align-items:center;}
+    .iconbtn{
+      width:38px; height:38px; display:grid; place-items:center;
+      border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.03); text-decoration:none;
+    }
+    .iconbtn:hover{border-color:rgba(242,183,5,.35)}
+    .hamburger{display:none}
+    .btn{
+      border-radius:14px; padding:12px 16px;
+      font-weight:900; letter-spacing:.4px; text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+      font-size:13px;
+    }
+
+    /* ── Page Hero ───────────────────────────────── */
+    .pageHero{
+      padding:52px 0 38px;
+    }
+    .pageHeroInner{
+      border-radius:24px;
+      background:linear-gradient(135deg, rgba(11,60,136,.35) 0%, rgba(5,8,18,.60) 60%, rgba(242,183,5,.12) 100%);
+      border:1px solid rgba(255,255,255,.10);
+      padding:40px 44px;
+      position:relative; overflow:hidden;
+    }
+    .pageHeroInner::before{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(800px 400px at 0% 50%, rgba(11,60,136,.30), transparent 65%);
+      pointer-events:none;
+    }
+    .pageHero .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      color:var(--yellow); font-weight:900; font-size:11px;
+      letter-spacing:1.6px; text-transform:uppercase; margin-bottom:10px;
+    }
+    .kicker-dot{width:7px; height:7px; border-radius:50%; background:var(--yellow);}
+    .pageHero h1{
+      margin:0 0 10px;
+      font-size:clamp(30px, 4vw, 52px);
+      font-weight:900; letter-spacing:.8px; text-transform:uppercase; line-height:1.05;
+    }
+    .pageHero p{margin:0; color:rgba(255,255,255,.80); max-width:60ch; font-size:16px;}
+    .jumpLinks{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:22px;
+    }
+    .jumpLink{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 16px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      font-size:12px; font-weight:900; letter-spacing:.6px; text-transform:uppercase;
+      color:rgba(255,255,255,.88);
+    }
+    .jumpLink:hover{border-color:rgba(242,183,5,.40); color:var(--yellow);}
+    .jumpLink .jdot{width:7px; height:7px; border-radius:50%;}
+
+    /* ── Section wrapper ─────────────────────────── */
+    .teamSection{padding:0 0 70px;}
+    .teamSectionDivider{
+      height:1px; background:var(--line); margin:0 0 60px;
+    }
+    .teamSectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+      margin-bottom:30px;
+    }
+    .teamBadge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 12px; border-radius:999px;
+      font-size:11px; font-weight:900; letter-spacing:1.2px; text-transform:uppercase;
+    }
+    .teamBadge.senior{
+      background:rgba(11,60,136,.20); border:1px solid rgba(11,60,136,.45);
+      color:rgba(180,210,255,.9);
+    }
+    .teamBadge.ladies{
+      background:rgba(225,6,0,.12); border:1px solid rgba(225,6,0,.35);
+      color:rgba(255,180,180,.9);
+    }
+    .teamBadge.dev{
+      background:rgba(242,183,5,.12); border:1px solid rgba(242,183,5,.35);
+      color:rgba(255,230,100,.9);
+    }
+    .teamBadge.juniors{
+      background:rgba(52,208,138,.12); border:1px solid rgba(52,208,138,.35);
+      color:rgba(100,255,200,.9);
+    }
+    .teamSectionHead h2{
+      margin:0 0 6px;
+      font-size:clamp(24px, 3vw, 36px);
+      font-weight:900; letter-spacing:.8px; text-transform:uppercase; line-height:1.05;
+    }
+    .teamSectionHead p{margin:0; color:rgba(255,255,255,.72); font-size:15px;}
+
+    /* ── Subsection label ───────────────────────── */
+    .subsection{margin-bottom:32px;}
+    .subsectionTitle{
+      display:flex; align-items:center; gap:10px;
+      margin:0 0 16px;
+      font-size:11px; font-weight:900; letter-spacing:1.4px; text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+    }
+    .subsectionTitle::after{
+      content:""; flex:1; height:1px; background:var(--line);
+    }
+
+    /* ── Coach cards ─────────────────────────────── */
+    .coachGrid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+    .coachCard{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      overflow:hidden;
+      box-shadow:0 14px 40px rgba(0,0,0,.30);
+    }
+    .coachPhoto{
+      width:100%; aspect-ratio:4/3;
+      background:linear-gradient(160deg, rgba(11,60,136,.40) 0%, rgba(5,8,18,.70) 100%);
+      display:flex; align-items:flex-end; justify-content:center;
+      overflow:hidden; position:relative;
+    }
+    .coachPhoto img{
+      width:100%; height:100%; object-fit:cover; object-position:top;
+    }
+    .coachPhotoPlaceholder{
+      display:flex; align-items:flex-end; justify-content:center;
+      width:100%; height:100%;
+    }
+    .coachPhotoPlaceholder svg{width:55%; opacity:.22;}
+    .coachInfo{padding:14px 16px 16px;}
+    .coachName{font-size:15px; font-weight:900; letter-spacing:.3px; margin-bottom:4px;}
+    .coachRole{
+      font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+      color:var(--yellow); opacity:.85;
+    }
+
+    /* ── Player cards ────────────────────────────── */
+    .playerGrid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:14px;
+    }
+    .playerCard{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      transition:border-color .2s;
+    }
+    .playerCard:hover{border-color:rgba(242,183,5,.25);}
+    .playerPhoto{
+      width:100%; aspect-ratio:3/4;
+      background:linear-gradient(180deg, rgba(11,60,136,.25) 0%, rgba(5,8,18,.65) 100%);
+      display:flex; align-items:flex-end; justify-content:center;
+      overflow:hidden; position:relative;
+    }
+    .playerPhoto img{
+      width:100%; height:100%; object-fit:cover; object-position:top;
+    }
+    .playerPhotoPlaceholder{
+      display:flex; align-items:flex-end; justify-content:center;
+      width:100%; height:100%;
+    }
+    .playerPhotoPlaceholder svg{width:62%; opacity:.18;}
+    .playerNum{
+      position:absolute; top:10px; left:10px;
+      width:28px; height:28px; border-radius:8px;
+      background:rgba(5,8,18,.70);
+      border:1px solid rgba(255,255,255,.14);
+      display:grid; place-items:center;
+      font-size:12px; font-weight:900; color:rgba(255,255,255,.75);
+      backdrop-filter:blur(6px);
+    }
+    .playerInfo{padding:11px 13px 13px;}
+    .playerName{font-size:13px; font-weight:900; letter-spacing:.2px; margin-bottom:3px;}
+    .playerPosition{
+      font-size:11px; font-weight:800; letter-spacing:.8px; text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+    }
+
+    /* ── Junior age groups ───────────────────────── */
+    .juniorGrid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+    .ageGroup{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      overflow:hidden;
+      box-shadow:0 14px 40px rgba(0,0,0,.28);
+    }
+    .groupPhoto{
+      width:100%; aspect-ratio:16/9;
+      position:relative; overflow:hidden;
+    }
+    .groupPhoto img{
+      width:100%; height:100%; object-fit:cover;
+    }
+    .groupPhotoPlaceholder{
+      width:100%; height:100%;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:8px;
+      background:linear-gradient(135deg, rgba(11,60,136,.35), rgba(52,208,138,.12), rgba(5,8,18,.60));
+    }
+    .groupPhotoPlaceholder svg{opacity:.18; width:52px;}
+    .groupPhotoPlaceholder span{
+      font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+      color:rgba(255,255,255,.40);
+    }
+    .ageGroupInfo{padding:14px 16px 16px;}
+    .ageGroupName{
+      font-size:17px; font-weight:900; letter-spacing:.5px; text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    .ageGroupMeta{
+      font-size:12px; color:rgba(255,255,255,.55); font-weight:700;
+    }
+
+    /* ── Footer ──────────────────────────────────── */
+    footer{padding:30px 0 50px; border-top:1px solid var(--line); color:rgba(255,255,255,.74)}
+    .footGrid{display:grid; grid-template-columns: 1.2fr .8fr .8fr; gap:18px;}
+    .footGrid h4{margin:0 0 10px; text-transform:uppercase; letter-spacing:.9px}
+    .muted{color:rgba(255,255,255,.65)}
+
+    /* ── Responsive ──────────────────────────────── */
+    @media(max-width:980px){
+      nav ul{display:none}
+      .hamburger{display:inline-flex}
+      .coachGrid{grid-template-columns:repeat(2,1fr)}
+      .playerGrid{grid-template-columns:repeat(3,1fr)}
+      .juniorGrid{grid-template-columns:repeat(2,1fr)}
+      .footGrid{grid-template-columns:1fr}
+      .pageHeroInner{padding:28px 24px}
+    }
+    @media(max-width:620px){
+      .playerGrid{grid-template-columns:repeat(2,1fr)}
+      .coachGrid{grid-template-columns:repeat(2,1fr)}
+      .juniorGrid{grid-template-columns:1fr}
+      .teamSectionHead{flex-direction:column; align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════════════════ -->
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="index.html" aria-label="Penmaenmawr Phoenix FC Home">
+        <div class="badge-img">
+          <img src="assets/badge.png" alt="Penmaenmawr Phoenix FC badge" onerror="this.style.display='none'; this.parentElement.textContent='PP'; this.parentElement.style.fontWeight='900';" />
+        </div>
+        <div>
+          <h1>Penmaenmawr <span>Phoenix FC</span></h1>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="nav-has-dropdown">
+            <a href="#" class="active" aria-haspopup="true">Teams <span class="chevron">▾</span></a>
+            <div class="dropdown-panel" role="menu">
+              <a href="#first-team" role="menuitem"><span class="dp-dot blue"></span> First Team</a>
+              <a href="#ladies" role="menuitem"><span class="dp-dot red"></span> Ladies Team</a>
+              <a href="#development" role="menuitem"><span class="dp-dot yellow"></span> Development Team</a>
+              <div class="dropdown-divider"></div>
+              <a href="#juniors" role="menuitem"><span class="dp-dot green"></span> Juniors</a>
+            </div>
+          </li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="pitch-hire.html">Pitch Hire</a></li>
+          <li><a href="commercials.html">Commercials</a></li>
+        </ul>
+      </nav>
+
+      <div class="social">
+        <a class="iconbtn" href="#" aria-label="Facebook" title="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2 0-4 2-4 4v3H7v3h3v8h3v-8h3l1-3h-4v-3c0-1 .5-1 1-1Z" fill="currentColor"/></svg>
+        </a>
+        <a class="iconbtn" href="#" aria-label="Instagram" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm6-2.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="currentColor"/></svg>
+        </a>
+        <a class="iconbtn hamburger" href="#" onclick="toggleMenu(event)" aria-label="Menu" title="Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" style="display:none; padding:0 0 14px;">
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" style="background:rgba(242,183,5,.12);border-color:rgba(242,183,5,.25)" href="#first-team">First Team</a>
+        <a class="btn" style="background:rgba(242,183,5,.12);border-color:rgba(242,183,5,.25)" href="#ladies">Ladies</a>
+        <a class="btn" style="background:rgba(242,183,5,.12);border-color:rgba(242,183,5,.25)" href="#development">Development</a>
+        <a class="btn" style="background:rgba(242,183,5,.12);border-color:rgba(242,183,5,.25)" href="#juniors">Juniors</a>
+        <a class="btn" href="history.html">History</a>
+        <a class="btn" href="pitch-hire.html">Pitch Hire</a>
+        <a class="btn" href="commercials.html">Commercials</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ PAGE HERO ═══════════════════════════════════════════════════════ -->
+  <div class="pageHero">
+    <div class="wrap">
+      <div class="pageHeroInner">
+        <div class="kicker"><span class="kicker-dot"></span> Squads &amp; Coaching Staff</div>
+        <h1>Our <span style="color:var(--yellow)">Teams</span></h1>
+        <p>Penmaenmawr Phoenix FC fields teams across all levels of the game — from our First Team and Ladies side through to our Development squad and a thriving Juniors section.</p>
+        <div class="jumpLinks">
+          <a class="jumpLink" href="#first-team"><span class="jdot" style="background:var(--blue)"></span> First Team</a>
+          <a class="jumpLink" href="#ladies"><span class="jdot" style="background:var(--red)"></span> Ladies Team</a>
+          <a class="jumpLink" href="#development"><span class="jdot" style="background:var(--yellow)"></span> Development Team</a>
+          <a class="jumpLink" href="#juniors"><span class="jdot" style="background:#34d08a"></span> Juniors</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FIRST TEAM ══════════════════════════════════════════════════════ -->
+  <section class="teamSection" id="first-team">
+    <div class="wrap">
+      <div class="teamSectionHead">
+        <div>
+          <span class="teamBadge senior">Senior</span>
+          <h2 style="margin-top:10px;">First Team</h2>
+          <p>Competing at senior level in North Wales football.</p>
+        </div>
+      </div>
+
+      <!-- Coaches -->
+      <div class="subsection">
+        <h3 class="subsectionTitle">Coaching Staff</h3>
+        <div class="coachGrid">
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <!-- Replace with: <img src="assets/coach-ft-1.jpg" alt="Head Coach" /> -->
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Head Coach</div>
+              <div class="coachRole">First Team Manager</div>
+            </div>
+          </div>
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Assistant Manager</div>
+              <div class="coachRole">Assistant Manager</div>
+            </div>
+          </div>
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Goalkeeper Coach</div>
+              <div class="coachRole">GK Coach</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Players -->
+      <div class="subsection">
+        <h3 class="subsectionTitle">Squad</h3>
+        <div class="playerGrid" id="ftPlayers"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="teamSectionDivider wrap"></div>
+
+  <!-- ═══ LADIES TEAM ══════════════════════════════════════════════════════ -->
+  <section class="teamSection" id="ladies">
+    <div class="wrap">
+      <div class="teamSectionHead">
+        <div>
+          <span class="teamBadge ladies">Ladies</span>
+          <h2 style="margin-top:10px;">Ladies Team</h2>
+          <p>Representing the club in women's football across North Wales.</p>
+        </div>
+      </div>
+
+      <!-- Coaches -->
+      <div class="subsection">
+        <h3 class="subsectionTitle">Coaching Staff</h3>
+        <div class="coachGrid">
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Head Coach</div>
+              <div class="coachRole">Ladies Manager</div>
+            </div>
+          </div>
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Assistant Coach</div>
+              <div class="coachRole">Assistant Manager</div>
+            </div>
+          </div>
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Fitness Coach</div>
+              <div class="coachRole">Fitness &amp; Conditioning</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Players -->
+      <div class="subsection">
+        <h3 class="subsectionTitle">Squad</h3>
+        <div class="playerGrid" id="ladiesPlayers"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="teamSectionDivider wrap"></div>
+
+  <!-- ═══ DEVELOPMENT TEAM ═════════════════════════════════════════════════ -->
+  <section class="teamSection" id="development">
+    <div class="wrap">
+      <div class="teamSectionHead">
+        <div>
+          <span class="teamBadge dev">Development</span>
+          <h2 style="margin-top:10px;">Development Team</h2>
+          <p>Bridging the gap between our junior and senior sections, nurturing the next generation of Phoenix players.</p>
+        </div>
+      </div>
+
+      <!-- Coaches -->
+      <div class="subsection">
+        <h3 class="subsectionTitle">Coaching Staff</h3>
+        <div class="coachGrid">
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Development Manager</div>
+              <div class="coachRole">Development Team Manager</div>
+            </div>
+          </div>
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Assistant Coach</div>
+              <div class="coachRole">Assistant Manager</div>
+            </div>
+          </div>
+
+          <div class="coachCard">
+            <div class="coachPhoto">
+              <div class="coachPhotoPlaceholder">
+                <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+                  <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="coachInfo">
+              <div class="coachName">Goalkeeper Coach</div>
+              <div class="coachRole">GK Coach</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Players -->
+      <div class="subsection">
+        <h3 class="subsectionTitle">Squad</h3>
+        <div class="playerGrid" id="devPlayers"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="teamSectionDivider wrap"></div>
+
+  <!-- ═══ JUNIORS ══════════════════════════════════════════════════════════ -->
+  <section class="teamSection" id="juniors">
+    <div class="wrap">
+      <div class="teamSectionHead">
+        <div>
+          <span class="teamBadge juniors">Juniors</span>
+          <h2 style="margin-top:10px;">Juniors Section</h2>
+          <p>A thriving junior section covering all age groups — developing young talent and a love of the game in our community.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsectionTitle">Age Groups</h3>
+        <div class="juniorGrid">
+
+          <!-- U7 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <!-- Replace with: <img src="assets/juniors-u7.jpg" alt="Under 7s" /> -->
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 7s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U8 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 8s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U9 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 9s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U10 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 10s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U11 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 11s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U12 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 12s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U13 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 13s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U14 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 14s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+          <!-- U16 -->
+          <div class="ageGroup">
+            <div class="groupPhoto">
+              <div class="groupPhotoPlaceholder">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="3"/>
+                  <path d="M32 12 L36 26 L50 26 L39 35 L43 49 L32 40 L21 49 L25 35 L14 26 L28 26Z" fill="white"/>
+                </svg>
+                <span>Group Photo Coming Soon</span>
+              </div>
+            </div>
+            <div class="ageGroupInfo">
+              <div class="ageGroupName">Under 16s</div>
+              <div class="ageGroupMeta">Contact club for training times</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footGrid">
+      <div>
+        <h4>Penmaenmawr Phoenix FC</h4>
+        <p class="muted" style="margin:0 0 10px;">
+          Replace this with your club description, ground address, and matchday info.
+        </p>
+        <p class="muted" style="margin:0;">
+          Contact: <a href="mailto:info@yourclub.co.uk" style="color:var(--yellow)">info@yourclub.co.uk</a>
+        </p>
+      </div>
+      <div>
+        <h4>Our Teams</h4>
+        <div style="display:grid; gap:8px;">
+          <a class="muted" href="#first-team">First Team</a>
+          <a class="muted" href="#ladies">Ladies Team</a>
+          <a class="muted" href="#development">Development Team</a>
+          <a class="muted" href="#juniors">Juniors</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div style="display:grid; gap:8px;">
+          <a class="muted" href="index.html">Home</a>
+          <a class="muted" href="history.html">History</a>
+          <a class="muted" href="pitch-hire.html">Pitch Hire</a>
+          <a class="muted" href="commercials.html">Commercials</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="muted">© <span id="year"></span> Penmaenmawr Phoenix FC</div>
+      <div class="muted">Built for GitHub Pages • Static HTML</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ───────────────────────────────────────────────────────
+  function toggleMenu(e){
+    e.preventDefault();
+    const el = document.getElementById('mobileMenu');
+    el.style.display = (el.style.display === 'none' || !el.style.display) ? 'block' : 'none';
+  }
+
+  // ── Player silhouette SVG (reused across all grids) ───────────────────
+  const silhouette = `<svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="40" cy="26" rx="20" ry="22" fill="white"/>
+    <path d="M4 90c0-34 12-50 36-50s36 16 36 50z" fill="white"/>
+  </svg>`;
+
+  // ── Squad data ────────────────────────────────────────────────────────
+  const firstTeamSquad = [
+    {num:1,  name:"Goalkeeper",      pos:"Goalkeeper"},
+    {num:2,  name:"Right Back",      pos:"Defender"},
+    {num:3,  name:"Left Back",       pos:"Defender"},
+    {num:4,  name:"Centre Back",     pos:"Defender"},
+    {num:5,  name:"Centre Back",     pos:"Defender"},
+    {num:6,  name:"Defensive Mid",   pos:"Midfielder"},
+    {num:7,  name:"Right Winger",    pos:"Midfielder"},
+    {num:8,  name:"Centre Mid",      pos:"Midfielder"},
+    {num:9,  name:"Striker",         pos:"Forward"},
+    {num:10, name:"Attacking Mid",   pos:"Midfielder"},
+    {num:11, name:"Left Winger",     pos:"Midfielder"},
+    {num:12, name:"Goalkeeper",      pos:"Goalkeeper"},
+    {num:14, name:"Centre Back",     pos:"Defender"},
+    {num:15, name:"Midfielder",      pos:"Midfielder"},
+    {num:16, name:"Striker",         pos:"Forward"},
+    {num:17, name:"Forward",         pos:"Forward"},
+  ];
+
+  const ladiesSquad = [
+    {num:1,  name:"Goalkeeper",      pos:"Goalkeeper"},
+    {num:2,  name:"Right Back",      pos:"Defender"},
+    {num:3,  name:"Left Back",       pos:"Defender"},
+    {num:4,  name:"Centre Back",     pos:"Defender"},
+    {num:5,  name:"Centre Back",     pos:"Defender"},
+    {num:6,  name:"Defensive Mid",   pos:"Midfielder"},
+    {num:7,  name:"Right Winger",    pos:"Midfielder"},
+    {num:8,  name:"Centre Mid",      pos:"Midfielder"},
+    {num:9,  name:"Striker",         pos:"Forward"},
+    {num:10, name:"Attacking Mid",   pos:"Midfielder"},
+    {num:11, name:"Left Winger",     pos:"Midfielder"},
+    {num:12, name:"Goalkeeper",      pos:"Goalkeeper"},
+    {num:13, name:"Centre Back",     pos:"Defender"},
+    {num:14, name:"Midfielder",      pos:"Midfielder"},
+    {num:15, name:"Striker",         pos:"Forward"},
+    {num:16, name:"Forward",         pos:"Forward"},
+  ];
+
+  const devSquad = [
+    {num:1,  name:"Goalkeeper",      pos:"Goalkeeper"},
+    {num:2,  name:"Right Back",      pos:"Defender"},
+    {num:3,  name:"Left Back",       pos:"Defender"},
+    {num:4,  name:"Centre Back",     pos:"Defender"},
+    {num:5,  name:"Centre Back",     pos:"Defender"},
+    {num:6,  name:"Defensive Mid",   pos:"Midfielder"},
+    {num:7,  name:"Right Winger",    pos:"Midfielder"},
+    {num:8,  name:"Centre Mid",      pos:"Midfielder"},
+    {num:9,  name:"Striker",         pos:"Forward"},
+    {num:10, name:"Attacking Mid",   pos:"Midfielder"},
+    {num:11, name:"Left Winger",     pos:"Midfielder"},
+    {num:12, name:"Goalkeeper",      pos:"Goalkeeper"},
+    {num:13, name:"Centre Back",     pos:"Defender"},
+    {num:14, name:"Midfielder",      pos:"Midfielder"},
+    {num:15, name:"Striker",         pos:"Forward"},
+    {num:16, name:"Forward",         pos:"Forward"},
+  ];
+
+  function renderSquad(squadData, containerId){
+    const grid = document.getElementById(containerId);
+    squadData.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'playerCard';
+      card.innerHTML = `
+        <div class="playerPhoto">
+          <div class="playerPhotoPlaceholder">${silhouette}</div>
+          <div class="playerNum">${p.num}</div>
+        </div>
+        <div class="playerInfo">
+          <div class="playerName">${p.name}</div>
+          <div class="playerPosition">${p.pos}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  renderSquad(firstTeamSquad, 'ftPlayers');
+  renderSquad(ladiesSquad,    'ladiesPlayers');
+  renderSquad(devSquad,       'devPlayers');
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

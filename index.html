@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Penmaenmawr Phoenix FC</title>
+  <meta name="description" content="Penmaenmawr Phoenix FC — fixtures, news, teams, history, and 5-a-side pitch hire." />
+  <style>
+    :root{
+      --blue:#0B3C88;
+      --yellow:#F2B705;
+      --red:#E10600;
+      --ink:#0b1220;
+      --bg:#070A10;
+      --card:#0f1628;
+      --muted:#9fb0d1;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 20px 55px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:#fff;
+      background:
+        radial-gradient(1100px 600px at 20% -10%, rgba(11,60,136,.55), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(242,183,5,.30), transparent 55%),
+        radial-gradient(900px 650px at 50% 120%, rgba(225,6,0,.18), transparent 55%),
+        linear-gradient(180deg, #050812 0%, #060913 35%, #050812 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .wrap{width:min(var(--max), calc(100% - 40px)); margin:0 auto;}
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(5,8,18,.92), rgba(5,8,18,.65));
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+    .badge{
+      width:40px; height:40px; border-radius:12px;
+      background:linear-gradient(145deg, rgba(242,183,5,.18), rgba(11,60,136,.10));
+      border:1px solid rgba(242,183,5,.28);
+      display:grid; place-items:center;
+      overflow:hidden;
+    }
+    .badge img{width:100%; height:100%; object-fit:contain}
+    .brand h1{margin:0; font-size:14px; letter-spacing:.6px; text-transform:uppercase; line-height:1.1}
+    .brand span{display:block; color:var(--yellow); font-weight:800; font-size:12px}
+    nav ul{display:flex; gap:18px; list-style:none; padding:0; margin:0; align-items:center;}
+    nav a{
+      text-decoration:none; font-weight:700; letter-spacing:.4px;
+      padding:10px 10px; border-radius:12px; color:rgba(255,255,255,.88);
+    }
+    nav a:hover{background:rgba(255,255,255,.06)}
+    nav a.active{background:rgba(242,183,5,.14); border:1px solid rgba(242,183,5,.25)}
+    /* Dropdown */
+    .nav-has-dropdown{position:relative;}
+    .nav-has-dropdown > a{display:inline-flex; align-items:center; gap:5px;}
+    .nav-has-dropdown > a .chevron{font-size:10px; opacity:.6; transition:transform .2s; display:inline-block; margin-top:1px;}
+    .nav-has-dropdown:hover > a .chevron{transform:rotate(180deg);}
+    .dropdown-panel{
+      position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%);
+      min-width:220px;
+      background:rgba(6,9,19,.97);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px; padding:8px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 24px 60px rgba(0,0,0,.6);
+      display:none; z-index:300;
+    }
+    .nav-has-dropdown:hover .dropdown-panel{display:block;}
+    .dropdown-panel a{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:10px;
+      color:rgba(255,255,255,.88); font-weight:700;
+      font-size:13px; letter-spacing:.3px; text-decoration:none;
+    }
+    .dropdown-panel a:hover{background:rgba(255,255,255,.07); color:#F2B705;}
+    .dp-dot{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
+    .dp-dot.blue{background:#0B3C88;}
+    .dp-dot.red{background:#E10600;}
+    .dp-dot.yellow{background:#F2B705;}
+    .dp-dot.green{background:#34d08a;}
+    .dropdown-divider{height:1px; background:rgba(255,255,255,.10); margin:6px 8px;}
+    .social{display:flex; gap:10px; align-items:center;}
+    .iconbtn{
+      width:38px; height:38px; display:grid; place-items:center;
+      border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      text-decoration:none;
+    }
+    .iconbtn:hover{border-color:rgba(242,183,5,.35)}
+    .hamburger{display:none}
+    /* Hero */
+    .hero{
+      position:relative;
+      padding:44px 0 10px;
+    }
+    .heroCard{
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      background:#0b1220;
+      min-height:460px;
+    }
+    .heroMedia{
+      position:absolute; inset:0;
+      background:#0b1220;
+    }
+    .heroMedia img{
+      width:100%; height:100%;
+      object-fit:cover;
+      filter:saturate(1.05) contrast(1.02);
+      transform:scale(1.02);
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,8,18,.92) 0%, rgba(5,8,18,.72) 40%, rgba(5,8,18,.15) 70%, rgba(5,8,18,.70) 100%),
+        radial-gradient(900px 500px at 20% 40%, rgba(11,60,136,.55), transparent 60%),
+        radial-gradient(900px 520px at 70% 30%, rgba(242,183,5,.28), transparent 60%);
+    }
+    .heroInner{
+      position:relative;
+      padding:58px 52px 46px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:30px;
+      align-items:end;
+      min-height:460px;
+    }
+    .heroKicker{
+      display:inline-flex; gap:10px; align-items:center;
+      color:rgba(255,255,255,.86);
+      text-transform:uppercase; letter-spacing:1.4px;
+      font-weight:800; font-size:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      padding:8px 12px; border-radius:999px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow); box-shadow:0 0 0 6px rgba(242,183,5,.14)}
+    .heroTitle{
+      margin:16px 0 10px;
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height:1.02;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+    .heroTitle .accent{color:var(--yellow)}
+    .heroSub{
+      margin:0 0 22px;
+      color:rgba(255,255,255,.82);
+      font-size:16px;
+      max-width:56ch;
+    }
+    .btnRow{display:flex; gap:12px; flex-wrap:wrap;}
+    .btn{
+      border-radius:14px;
+      padding:12px 16px;
+      font-weight:900;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(242,183,5,1), rgba(216,161,0,1));
+      color:#111;
+      border-color:rgba(242,183,5,.55);
+    }
+    .btn.primary:hover{filter:brightness(1.03)}
+    .btn.ghost:hover{border-color:rgba(242,183,5,.40)}
+    .arrow{display:inline-block; transform:translateY(-1px)}
+    .heroSide{
+      display:grid; gap:12px;
+      justify-items:end;
+    }
+    .miniCard{
+      width:min(100%, 360px);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(5,8,18,.50);
+      padding:14px 14px;
+      backdrop-filter: blur(10px);
+    }
+    .miniCard h3{margin:0 0 6px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.72)}
+    .miniRow{display:flex; justify-content:space-between; gap:10px; align-items:baseline;}
+    .score{font-size:20px; font-weight:1000; letter-spacing:.5px}
+    .meta{color:rgba(255,255,255,.74); font-weight:700; font-size:12px}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      background:rgba(242,183,5,.12);
+      border:1px solid rgba(242,183,5,.22);
+      font-size:12px; font-weight:900; letter-spacing:.8px; text-transform:uppercase;
+      width:fit-content;
+    }
+    /* Result strip */
+    .strip{
+      margin-top:18px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(242,183,5,.35);
+      box-shadow: 0 12px 35px rgba(0,0,0,.35);
+      background:linear-gradient(90deg, rgba(242,183,5,1), rgba(242,183,5,.92));
+      color:#101010;
+    }
+    .stripInner{
+      padding:14px 18px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .stripTitle{
+      font-weight:1000; letter-spacing:.8px; text-transform:uppercase;
+      display:flex; gap:10px; align-items:center;
+    }
+    .stripTitle strong{font-size:18px}
+    .stripBtn{
+      text-decoration:none;
+      font-weight:1000; letter-spacing:.4px; text-transform:uppercase;
+      padding:10px 12px; border-radius:12px;
+      background:rgba(0,0,0,.10);
+      border:1px solid rgba(0,0,0,.18);
+      color:#101010;
+    }
+    .stripBtn:hover{background:rgba(0,0,0,.14)}
+    /* Sections */
+    section{padding:44px 0}
+    .sectionHead{
+      display:flex; align-items:end; justify-content:space-between; gap:16px;
+      margin-bottom:18px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      font-weight:1000;
+    }
+    .sectionHead p{margin:0; color:rgba(255,255,255,.72); max-width:65ch}
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .fixtureCard{
+      padding:14px 14px 12px;
+      display:grid; gap:10px;
+    }
+    .fixtureTop{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+    .clubChip{
+      display:flex; gap:10px; align-items:center;
+      font-weight:1000; letter-spacing:.4px;
+    }
+    .crest{
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      display:grid; place-items:center;
+      overflow:hidden;
+    }
+    .crest img{width:100%; height:100%; object-fit:cover}
+    .pill{
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.88);
+    }
+    .pill.home{border-color:rgba(242,183,5,.35); background:rgba(242,183,5,.10)}
+    .pill.away{border-color:rgba(11,60,136,.55); background:rgba(11,60,136,.18)}
+    .fixtureMid{
+      display:flex; align-items:end; justify-content:space-between; gap:10px;
+      border-top:1px solid var(--line);
+      padding-top:10px;
+    }
+    .time{font-size:20px; font-weight:1000}
+    .date{color:rgba(255,255,255,.70); font-weight:800; letter-spacing:.3px}
+    .fixtureBot{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      color:rgba(255,255,255,.72);
+      font-size:12px; font-weight:700;
+    }
+    .smallLink{
+      text-decoration:none; font-weight:1000; letter-spacing:.4px; text-transform:uppercase;
+      padding:9px 10px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+    }
+    .smallLink:hover{border-color:rgba(242,183,5,.38)}
+    .centerBtn{display:flex; justify-content:center; margin-top:16px;}
+    /* Teams tiles */
+    .tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+    .tile{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      min-height:190px;
+      background:#0b1220;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+    .tile img{width:100%; height:100%; object-fit:cover; filter:saturate(1.05)}
+    .tile::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(5,8,18,.25), rgba(5,8,18,.88));
+    }
+    .tileInner{
+      position:absolute; left:14px; right:14px; bottom:14px;
+      display:flex; justify-content:space-between; align-items:end; gap:10px;
+    }
+    .tile h3{
+      margin:0;
+      font-weight:1000;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      font-size:16px;
+    }
+    /* Pitch hire banner */
+    .pitch{
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      background:#0b1220;
+      position:relative;
+      min-height:250px;
+    }
+    .pitch img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0}
+    .pitch::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,8,18,.90) 0%, rgba(5,8,18,.70) 45%, rgba(5,8,18,.20) 75%, rgba(5,8,18,.70) 100%),
+        radial-gradient(900px 500px at 25% 40%, rgba(242,183,5,.25), transparent 60%);
+    }
+    .pitchInner{
+      position:relative;
+      padding:34px 28px;
+      display:grid; gap:14px;
+      max-width:700px;
+    }
+    .pitchInner h2{margin:0; font-size:28px; text-transform:uppercase; letter-spacing:.8px; font-weight:1000}
+    .priceRow{display:flex; gap:18px; flex-wrap:wrap; align-items:baseline}
+    .price{
+      font-weight:1000; font-size:30px;
+    }
+    .price small{font-size:12px; opacity:.8; letter-spacing:1px; text-transform:uppercase}
+    /* Supporters Draw */
+    .drawBanner{
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(11,60,136,.45);
+      box-shadow:var(--shadow);
+      background:linear-gradient(135deg, rgba(11,60,136,.55) 0%, rgba(7,10,16,.90) 50%, rgba(242,183,5,.18) 100%);
+      position:relative;
+      padding:38px 34px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:24px;
+      align-items:center;
+    }
+    .drawBanner::before{
+      content:"";
+      position:absolute; inset:0;
+      background:radial-gradient(700px 400px at 10% 50%, rgba(11,60,136,.45), transparent 65%),
+                 radial-gradient(500px 350px at 90% 50%, rgba(242,183,5,.18), transparent 65%);
+      pointer-events:none;
+    }
+    .drawContent{position:relative;}
+    .drawKicker{
+      display:inline-flex; gap:8px; align-items:center;
+      color:var(--yellow); font-weight:900; font-size:11px;
+      letter-spacing:1.6px; text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .drawBanner h2{margin:0 0 8px; font-size:clamp(20px,2.8vw,30px); text-transform:uppercase; letter-spacing:.8px; font-weight:1000;}
+    .drawBanner p{margin:0 0 18px; color:rgba(255,255,255,.82); max-width:58ch;}
+    .drawPrizes{
+      position:relative;
+      display:flex; gap:18px; flex-wrap:wrap; align-items:stretch;
+      flex-shrink:0;
+    }
+    .drawPrize{
+      border-radius:18px;
+      border:1px solid rgba(242,183,5,.30);
+      background:rgba(242,183,5,.08);
+      padding:16px 20px;
+      text-align:center;
+      min-width:110px;
+    }
+    .drawPrize .amount{font-size:26px; font-weight:1000; color:var(--yellow); display:block;}
+    .drawPrize .label{font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.72);}
+    @media (max-width: 980px){
+      .drawBanner{grid-template-columns:1fr;}
+      .drawPrizes{justify-content:flex-start;}
+    }
+    /* Footer */
+    footer{padding:30px 0 50px; border-top:1px solid var(--line); color:rgba(255,255,255,.74)}
+    .footGrid{display:grid; grid-template-columns: 1.2fr .8fr .8fr; gap:18px;}
+    .footGrid h4{margin:0 0 10px; text-transform:uppercase; letter-spacing:.9px}
+    .muted{color:rgba(255,255,255,.65)}
+    /* Mobile */
+    @media (max-width: 980px){
+      .heroInner{grid-template-columns:1fr; align-items:start; padding:44px 22px}
+      .heroSide{justify-items:start}
+      .grid3{grid-template-columns:1fr}
+      .tiles{grid-template-columns:1fr 1fr}
+      .footGrid{grid-template-columns:1fr}
+      nav ul{display:none}
+      .hamburger{display:inline-flex}
+    }
+    @media (max-width: 520px){
+      .tiles{grid-template-columns:1fr}
+      .stripTitle strong{font-size:16px}
+      .heroCard{min-height:520px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="index.html" aria-label="Penmaenmawr Phoenix FC Home">
+        <div class="badge">
+          <!-- Replace assets/badge.png with your actual badge file -->
+          <img src="assets/badge.png" alt="Penmaenmawr Phoenix FC badge" onerror="this.style.display='none'; this.parentElement.textContent='PP'; this.parentElement.style.fontWeight='900';" />
+        </div>
+        <div>
+          <h1>Penmaenmawr <span>Phoenix FC</span></h1>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li class="nav-has-dropdown">
+            <a href="teams.html" aria-haspopup="true">Teams <span class="chevron">▾</span></a>
+            <div class="dropdown-panel" role="menu">
+              <a href="teams.html#first-team" role="menuitem"><span class="dp-dot blue"></span> First Team</a>
+              <a href="teams.html#ladies" role="menuitem"><span class="dp-dot red"></span> Ladies Team</a>
+              <a href="teams.html#development" role="menuitem"><span class="dp-dot yellow"></span> Development Team</a>
+              <div class="dropdown-divider"></div>
+              <a href="teams.html#juniors" role="menuitem"><span class="dp-dot green"></span> Juniors</a>
+            </div>
+          </li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="pitch-hire.html">Pitch Hire</a></li>
+          <li><a href="commercials.html">Commercials</a></li>
+        </ul>
+      </nav>
+
+      <div class="social">
+        <a class="iconbtn" href="#" aria-label="Facebook" title="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2 0-4 2-4 4v3H7v3h3v8h3v-8h3l1-3h-4v-3c0-1 .5-1 1-1Z" fill="currentColor"/></svg>
+        </a>
+        <a class="iconbtn" href="#" aria-label="Instagram" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm6-2.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="currentColor"/></svg>
+        </a>
+        <a class="iconbtn hamburger" href="#" onclick="toggleMenu(event)" aria-label="Menu" title="Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" style="display:none; padding:0 0 14px;">
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="btn ghost" href="index.html">Home</a>
+        <a class="btn ghost" style="background:rgba(242,183,5,.10);border-color:rgba(242,183,5,.22)" href="teams.html#first-team">First Team</a>
+        <a class="btn ghost" style="background:rgba(242,183,5,.10);border-color:rgba(242,183,5,.22)" href="teams.html#ladies">Ladies</a>
+        <a class="btn ghost" style="background:rgba(242,183,5,.10);border-color:rgba(242,183,5,.22)" href="teams.html#development">Development</a>
+        <a class="btn ghost" style="background:rgba(242,183,5,.10);border-color:rgba(242,183,5,.22)" href="teams.html#juniors">Juniors</a>
+        <a class="btn ghost" href="history.html">History</a>
+        <a class="btn ghost" href="pitch-hire.html">Pitch Hire</a>
+        <a class="btn ghost" href="commercials.html">Commercials</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="heroCard">
+        <div class="heroMedia">
+          <!-- Replace assets/team.jpg with your team photo -->
+          <img src="assets/team.jpg" alt="Penmaenmawr Phoenix FC team photo" />
+        </div>
+        <div class="heroOverlay"></div>
+
+        <div class="heroInner">
+          <div>
+            <div class="heroKicker"><span class="dot"></span> North Wales football • Community • Competitive</div>
+            <h2 class="heroTitle">Penmaenmawr <span class="accent">Phoenix FC</span></h2>
+            <p class="heroSub">Fixtures, results, club news, teams, history — and 5-a-side pitch hire. Built for supporters, players, and the local community.</p>
+            <div class="btnRow">
+              <a class="btn primary" href="#fixtures">View Fixtures <span class="arrow">→</span></a>
+              <a class="btn ghost" href="pitch-hire.html">Hire Our Pitch</a>
+            </div>
+          </div>
+
+          <div class="heroSide">
+            <div class="miniCard">
+              <h3>Latest Result</h3>
+              <div class="miniRow">
+                <div class="score" id="latestScore">Phoenix 3–1 Conwy Borough</div>
+              </div>
+              <div class="miniRow">
+                <div class="meta" id="latestMeta">Sat 16 Mar • Home</div>
+                <span class="tag">Match Report</span>
+              </div>
+            </div>
+
+            <div class="miniCard">
+              <h3>Next Fixture</h3>
+              <div class="miniRow">
+                <div class="score" id="nextFixture">Phoenix vs Llandudno</div>
+              </div>
+              <div class="miniRow">
+                <div class="meta" id="nextMeta">Sat 23 Mar • 2:30 PM • Home</div>
+                <span class="tag" style="background:rgba(11,60,136,.18); border-color:rgba(11,60,136,.55)">Tickets</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latest Result Strip -->
+      <div class="strip" aria-label="Latest result">
+        <div class="stripInner">
+          <div class="stripTitle">
+            <strong>LATEST RESULT</strong>
+            <span id="stripScore">PHOENIX 3 – 1 CONWY BOROUGH</span>
+          </div>
+          <a class="stripBtn" href="#" id="matchReportLink">Match Report →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPCOMING FIXTURES -->
+  <section id="fixtures">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>Upcoming Fixtures</h2>
+          <p>Keep this updated weekly. If you want, we can later plug in an FAW feed or a simple Google Sheet → JSON flow.</p>
+        </div>
+        <a class="smallLink" href="#">Add club calendar</a>
+      </div>
+
+      <div class="grid3" id="fixturesGrid">
+        <!-- JS will populate these cards -->
+      </div>
+
+      <div class="centerBtn">
+        <a class="btn ghost" href="#">View Full Fixtures</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAMS TILES -->
+  <section id="teams">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>Teams</h2>
+          <p>Everything in one place: First Team, Ladies, Development Team, and Juniors.</p>
+        </div>
+        <a class="smallLink" href="teams.html">View all teams →</a>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="teams.html#first-team" style="text-decoration:none">
+          <img src="assets/action-1.jpg" alt="First Team" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(11,60,136,.45), rgba(242,183,5,.20))';"/>
+          <div class="tileInner">
+            <h3>First Team</h3>
+            <span class="pill home">View Squad</span>
+          </div>
+        </a>
+
+        <a class="tile" href="teams.html#development" style="text-decoration:none">
+          <img src="assets/action-2.jpg" alt="Development Team" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(242,183,5,.22), rgba(11,60,136,.30))';"/>
+          <div class="tileInner">
+            <h3>Development</h3>
+            <span class="pill home">View Squad</span>
+          </div>
+        </a>
+
+        <a class="tile" href="teams.html#ladies" style="text-decoration:none">
+          <img src="assets/action-3.jpg" alt="Ladies" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(11,60,136,.38), rgba(225,6,0,.12))';"/>
+          <div class="tileInner">
+            <h3>Ladies</h3>
+            <span class="pill home">View Squad</span>
+          </div>
+        </a>
+
+        <a class="tile" href="teams.html#juniors" style="text-decoration:none">
+          <img src="assets/action-4.jpg" alt="Juniors" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, rgba(242,183,5,.24), rgba(225,6,0,.10))';"/>
+          <div class="tileInner">
+            <h3>Juniors</h3>
+            <span class="pill home">View Squad</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORTERS DRAW -->
+  <section id="supporters-draw">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>Supporters Draw</h2>
+          <p>Join our monthly prize draw and help fund the club — every ticket makes a difference.</p>
+        </div>
+      </div>
+      <div class="drawBanner">
+        <div class="drawContent">
+          <div class="drawKicker"><span class="dot"></span> Monthly Draw • Open to All</div>
+          <h2>Join the <span style="color:var(--yellow)">Supporters Draw</span></h2>
+          <p>
+            For just a small monthly contribution, you could win one of our cash prizes — while directly supporting Penmaenmawr Phoenix FC.
+            Tickets are available from any committee member or by getting in touch via the club.
+          </p>
+          <div class="btnRow">
+            <a class="btn primary" href="mailto:info@yourclub.co.uk?subject=Supporters Draw">Get Your Ticket →</a>
+            <a class="btn ghost" href="#draw-info">How It Works</a>
+          </div>
+        </div>
+        <div class="drawPrizes">
+          <div class="drawPrize">
+            <span class="amount">1st</span>
+            <span class="label">Cash Prize</span>
+          </div>
+          <div class="drawPrize">
+            <span class="amount">2nd</span>
+            <span class="label">Cash Prize</span>
+          </div>
+          <div class="drawPrize">
+            <span class="amount">3rd</span>
+            <span class="label">Cash Prize</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="draw-info" class="card" style="margin-top:16px; padding:22px 24px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+        <div>
+          <div style="font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;">How to Enter</div>
+          <p style="margin:0;color:rgba(255,255,255,.82);font-size:14px;">Buy a monthly ticket from a committee member or contact the club. Numbers are assigned and entered into the draw each month.</p>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;">When is the Draw?</div>
+          <p style="margin:0;color:rgba(255,255,255,.82);font-size:14px;">The draw takes place at the end of each month. Winners are announced on our social media channels and contacted directly.</p>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;">Where Does the Money Go?</div>
+          <p style="margin:0;color:rgba(255,255,255,.82);font-size:14px;">All proceeds directly support the club — helping with kit, travel costs, pitch maintenance, and youth development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PITCH HIRE BANNER -->
+  <section id="pitch">
+    <div class="wrap">
+      <div class="pitch">
+        <img src="assets/pitch.jpg" alt="5-a-side pitch at night" />
+        <div class="pitchInner">
+          <h2>Book Our <span style="color:var(--yellow)">5-a-side Pitch</span></h2>
+          <div class="priceRow">
+            <div class="price">£40 <small>Peak</small></div>
+            <div class="price">£30 <small>Off Peak</small></div>
+            <div class="pill" style="border-color:rgba(242,183,5,.35); background:rgba(242,183,5,.10)">Online payment</div>
+          </div>
+          <p class="muted" style="margin:0; max-width:60ch;">
+            Add availability + payments via Stripe + a simple booking form, or embed a booking system if you move to WordPress later.
+          </p>
+          <div class="btnRow">
+            <a class="btn primary" href="pitch-hire.html">Check Availability →</a>
+            <a class="btn ghost" href="pitch-hire.html#pricing">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footGrid">
+      <div>
+        <h4>Penmaenmawr Phoenix FC</h4>
+        <p class="muted" style="margin:0 0 10px;">
+          Replace this with your club description, ground address, and matchday info.
+        </p>
+        <p class="muted" style="margin:0;">
+          Contact: <a href="mailto:info@yourclub.co.uk">info@yourclub.co.uk</a>
+        </p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <div style="display:grid; gap:8px;">
+          <a class="muted" href="teams.html">Teams</a>
+          <a class="muted" href="history.html">History</a>
+          <a class="muted" href="pitch-hire.html">Pitch Hire</a>
+          <a class="muted" href="commercials.html">Commercials</a>
+          <a class="muted" href="#supporters-draw">Supporters Draw</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Sponsors</h4>
+        <p class="muted" style="margin:0;">Add sponsor logos here (greyscale → colour on hover is a nice touch).</p>
+      </div>
+    </div>
+
+    <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div class="muted">© <span id="year"></span> Penmaenmawr Phoenix FC</div>
+      <div class="muted">Built for GitHub Pages • Static HTML</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Mobile menu ----
+  function toggleMenu(e){
+    e.preventDefault();
+    const el = document.getElementById('mobileMenu');
+    el.style.display = (el.style.display === 'none' || !el.style.display) ? 'block' : 'none';
+  }
+
+  // ---- Fixtures demo data (edit this) ----
+  const fixtures = [
+    {
+      opponent: "Llandudno",
+      where: "HOME",
+      type: "home",
+      date: "Sat 23 Mar",
+      time: "2:30 PM",
+      venue: "Penmaenmawr",
+      crest: "assets/opponent-1.png"
+    },
+    {
+      opponent: "Llanrwst Utd",
+      where: "AWAY",
+      type: "away",
+      date: "Wed 27 Mar",
+      time: "7:30 PM",
+      venue: "Away Ground",
+      crest: "assets/opponent-2.png"
+    },
+    {
+      opponent: "Connah’s Quay",
+      where: "HOME",
+      type: "home",
+      date: "Sat 30 Mar",
+      time: "2:30 PM",
+      venue: "Penmaenmawr",
+      crest: "assets/opponent-3.png"
+    }
+  ];
+
+  const grid = document.getElementById('fixturesGrid');
+  fixtures.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'card fixtureCard';
+    card.innerHTML = `
+      <div class="fixtureTop">
+        <div class="clubChip">
+          <div class="crest">
+            <img src="${f.crest}" alt="${f.opponent} crest" onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.05)';" />
+          </div>
+          <div>${f.opponent}</div>
+        </div>
+        <span class="pill ${f.type}">${f.where}</span>
+      </div>
+
+      <div class="fixtureMid">
+        <div>
+          <div class="time">${f.time}</div>
+          <div class="date">${f.date}</div>
+        </div>
+        <a class="smallLink" href="#">Add to calendar</a>
+      </div>
+
+      <div class="fixtureBot">
+        <div>📍 ${f.venue}</div>
+        <div>⚽ First Team</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
